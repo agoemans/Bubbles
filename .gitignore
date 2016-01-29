@@ -1,0 +1,5 @@
+.idea
+
+*.map
+*.js
+/vendor
