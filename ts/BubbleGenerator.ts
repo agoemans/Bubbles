@@ -9,6 +9,8 @@ module bubbleGame {
         public bubble: Bubble;
         public stagePosX: number;
         public stagePosY: number;
+        public dummyX: number;
+        public dummyY: number;
 
 
         constructor(stage:PIXI.Container, stageX:number, stageY:number) {
@@ -16,6 +18,8 @@ module bubbleGame {
             stage.addChild(this.bubble.graphics);
             this.stagePosX = stageX;
             this.stagePosY = stageY;
+            this.dummyX = 20;
+            this.dummyY = 40;
 
 
         }
@@ -23,7 +27,16 @@ module bubbleGame {
         public move(){
             //console.log(this.bubble.graphics.y);
             // while (this.bubble.graphics.y < 500){
-            TweenMax.to(this.bubble.graphics.moveTo(this.bubble.graphics.x, this.bubble.graphics.y),0.3,{x: 400, y:this.bubble.graphics.y} );
+            if (this.dummyY < this.stagePosY ){
+                TweenMax.to(this.bubble.graphics.moveTo(this.bubble.graphics.x, this.bubble.graphics.y),0.3,{x: 400, y:this.dummyY} );
+                this.dummyY *= 20;
+            }
+            else {
+                TweenMax.to(this.bubble.graphics.moveTo(this.bubble.graphics.x, this.bubble.graphics.y),0.3,{x: 400, y:this.dummyY} );
+                this.dummyY -= 20;
+            }
+
+
             //this.bubble.graphics.moveTo(this.bubble.graphics.x, this.bubble.graphics.y);
 
 
