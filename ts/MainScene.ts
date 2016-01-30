@@ -1,7 +1,6 @@
 /// <reference path="../vendor/typings/pixi.js/pixi.js.d.ts" />
 /// <reference path="BubbleGenerator.ts" />
 /// <reference path="Bubble.ts" />
-/// <reference path="BlueClass.ts" />
 
 
 module bubbleGame {
@@ -30,12 +29,14 @@ module bubbleGame {
 
             requestAnimationFrame( () => this.animate() );
 
+
+
         }
 
         public animate(){
             // render the stage
             this.renderer.render(this.stage);
-            this.bubbleGame.move();
+            this.bubbleGame.update();
             requestAnimationFrame( () => this.animate() );
 
         }
