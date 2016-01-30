@@ -14,6 +14,8 @@ module bubbleGame {
         public circleCentre: PIXI.Point;
 //        public bubbleColor:string;
         public graphics: PIXI.Graphics;
+        public hit:boolean;
+        public expired:boolean;
 
 
 
@@ -23,6 +25,8 @@ module bubbleGame {
             this.age = 0;
             this.hitRate = 0;
             this.radius = 20;
+            this.hit = false;
+            this.expired = false;
             this.circleCentre = new PIXI.Point(0,0);
             //this.bubbleColor = bubblecolor;
             this.graphics = new PIXI.Graphics();
@@ -57,12 +61,23 @@ module bubbleGame {
         }
 
         public collision(){
-
             // collide with wall or with each other
             // if b + r, decrease health
+            if (this.hitRate > 10){
+                this.bubbleInitDeath();
+            }
+            this.hitRate += 1;
+        }
+
+        private bubbleInitDeath(){
+            this.expired = true;
+
         }
 
         public update(){
+
+            this.hit = false;
+
             this.move();
 
             this.graphics.x += this.velocity.x;

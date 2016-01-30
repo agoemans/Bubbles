@@ -25,7 +25,7 @@ module bubbleGame {
         }
 
         public bubbleBirth(){
-            for (var i=0; i < 10; i++){
+            for (var i=0; i < 5; i++){
                 var bubble = new Bubble(this.stagePosX, this.stagePosY);
                 this.bubbleList.push(bubble);
                 this.stage.addChild(bubble.graphics);
@@ -39,12 +39,31 @@ module bubbleGame {
             }
 
             for (var i=0; i < this.bubbleList.length; i++){
+                if(this.bubbleList[i].expired == true){
+                    // looping through list and shortening list length. Bug
+                    // todo- note indexof per expired, have separate function remove from list per indexof
+                    this.stage.removeChild(this.bubbleList[i].graphics);
+                    this.bubbleList.splice(this.bubbleList.indexOf(this.bubbleList[i]), 1);
+                    console.log("remove from list");
+                    console.log(this.bubbleList.length);
+                }
+            }
+
+            for (var i=0; i < this.bubbleList.length; i++){
                 for (var j=0; j < this.bubbleList.length; j++){
                     //also make sure bubble not hitting itself
-                    if (i!==j && this.collision.checkCollide(this.bubbleList[i], this.bubbleList[j])){
-                        console.log("hit");
-                        this.bubbleList[i].hitRate += 1;
-                        this.bubbleList[j].hitRate += 1;
+                    if (i!==j &&
+                        !this.bubbleList[i].hit &&
+                        !this.bubbleList[j].hit &&
+                        this.collision.checkCollide(this.bubbleList[i], this.bubbleList[j])){
+
+
+                        this.bubbleList[i].hit = true;
+                        this.bubbleList[j].hit = true;
+
+                        this.bubbleList[i].collision();
+                        this.bubbleList[j].collision();
+                        this.collision.deflectBubble(this.bubbleList[i], this.bubbleList[j])
 
                     }
                 }
