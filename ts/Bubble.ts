@@ -1,7 +1,9 @@
 /// <reference path="../vendor/typings/pixi.js/pixi.js.d.ts" />
 /// <reference path="MainScene.ts" />
-/// <reference path="BubbleGenerator.ts" />
+/// <reference path="BubbleProcessor.ts" />
 
+
+//todo use an interface later
 
 module bubbleGame {
     export class Bubble {
@@ -12,14 +14,13 @@ module bubbleGame {
         public stageY: number;
         public radius: number;
         public circleCentre: PIXI.Point;
-//        public bubbleColor:string;
+        public bubbleColor:string;
+        public isFull:number;
         public graphics: PIXI.Graphics;
         public hit:boolean;
         public expired:boolean;
 
-
-
-        constructor(stageX:number, stageY:number){
+        constructor(stageX:number, stageY:number, color: string, bubbleHexColor:number){
             this.stageX = stageX;
             this.stageY = stageY;
             this.age = 0;
@@ -28,10 +29,11 @@ module bubbleGame {
             this.hit = false;
             this.expired = false;
             this.circleCentre = new PIXI.Point(0,0);
-            //this.bubbleColor = bubblecolor;
+            this.bubbleColor = color;
+            this.isFull = 0;
             this.graphics = new PIXI.Graphics();
             this.graphics.lineStyle(4, 0xffd900, 1);
-            this.graphics.beginFill(0xFF3300 * Math.random(), 1);
+            this.graphics.beginFill(bubbleHexColor, 1);
             this.graphics.drawCircle(this.circleCentre.x, this.circleCentre.y, this.radius);
             this.graphics.endFill();
 
@@ -60,13 +62,30 @@ module bubbleGame {
 
         }
 
-        public collision(){
+        public collision(other: Bubble){
             // collide with wall or with each other
             // if b + r, decrease health
-            if (this.hitRate > 10){
-                this.bubbleInitDeath();
+            if(this.bubbleColor == 'blue' && other.bubbleColor !== this.bubbleColor){
+                if (this.hitRate > 5){
+                    this.bubbleInitDeath();
+                }
+                this.hitRate += 1;
+                this.hit = true;
             }
-            this.hitRate += 1;
+        }
+
+        public fill(other:Bubble){
+            if (this.bubbleColor == 'blue' && other.bubbleColor == 'blue'){
+                if (this.isFull > 5){
+                    this.isFull = 0;
+                }
+                else{
+                    this.isFull += 1;
+                }
+                return !!this.isFull;
+            }
+
+            return true;
         }
 
         private bubbleInitDeath(){

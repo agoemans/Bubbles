@@ -1,7 +1,7 @@
 /// <reference path="../vendor/typings/pixi.js/pixi.js.d.ts" />
 /// <reference path="../vendor/typings/gsap/greensock.d.ts" />
 /// <reference path="Bubble.ts" />
-/// <reference path="BubbleGenerator.ts" />
+/// <reference path="BubbleProcessor.ts" />
 
 module bubbleGame {
     export class CollisionDetection {

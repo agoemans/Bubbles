@@ -1,5 +1,5 @@
 /// <reference path="../vendor/typings/pixi.js/pixi.js.d.ts" />
-/// <reference path="BubbleGenerator.ts" />
+/// <reference path="BubbleProcessor.ts" />
 /// <reference path="Bubble.ts" />
 
 
