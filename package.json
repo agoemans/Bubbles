@@ -1,0 +1,20 @@
+{
+  "name": "bubbles",
+  "version": "1.0.0",
+  "description": "A simple app that creates angry and passive bubbles",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agoemans/Bubbles.git"
+  },
+  "author": "A.Goemans",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-typescript": "^0.8.0",
+    "gsap": "1.18.2",
+    "phaser": "2.4.4"
+  },
+  "engines": {
+    "node": "5.x.x"
+  }
+}
