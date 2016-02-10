@@ -43,6 +43,7 @@ module bubbleGame {
             var bubble = new Bubble(this.stagePosX, this.stagePosY, color, bubbleHexColor);
             this.bubbleList.push(bubble);
             this.stage.addChild(bubble.graphics);
+            bubble.animateBirth();
         }
 
         public bubbleDeath(){
@@ -50,10 +51,11 @@ module bubbleGame {
                 if(this.bubbleList[i].expired == true){
                     // looping through list and shortening list length. Bug
                     // todo- note indexof per expired, have separate function remove from list per indexof
+                    this.bubbleList[i].animateDeath();
                     this.stage.removeChild(this.bubbleList[i].graphics);
                     this.bubbleList.splice(this.bubbleList.indexOf(this.bubbleList[i]), 1);
-                    console.log("remove from list");
-                    console.log(this.bubbleList.length);
+                    //console.log("remove from list");
+                    //console.log(this.bubbleList.length);
                 }
             }
         }

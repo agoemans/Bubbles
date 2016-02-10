@@ -1,7 +1,7 @@
 /// <reference path="../vendor/typings/pixi.js/pixi.js.d.ts" />
 /// <reference path="MainScene.ts" />
 /// <reference path="BubbleProcessor.ts" />
-
+/// <reference path="../vendor/typings/gsap/greensock.d.ts" />
 
 //todo use an interface later
 
@@ -42,17 +42,17 @@ module bubbleGame {
 
             //this.velocity = new PIXI.Point(Math.random(), Math.random());
             this.velocity = new PIXI.Point(10  * Math.random(), 10 * Math.random());
+        }
 
-
+        public animateBirth(){
+            this.graphics.scale.set(0,0);
+            TweenMax.to(this.graphics.scale, 2, {x:1,y:1, ease: Elastic.easeOut});
         }
 
         public move(){
-            //move
-
             if (this.graphics.y > this.stageY || this.graphics.y < 0) {
                 //this.graphics.y -= 80;
                 this.velocity.y = -this.velocity.y;
-
             }
 
             if (this.graphics.x > this.stageX || this.graphics.x < 0) {
@@ -90,7 +90,10 @@ module bubbleGame {
 
         private bubbleInitDeath(){
             this.expired = true;
+        }
 
+        public animateDeath(){
+            TweenMax.to(this.graphics.scale, 1, {x:0,y:0});
         }
 
         public update(){
