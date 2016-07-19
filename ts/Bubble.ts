@@ -3,8 +3,6 @@
 /// <reference path="BubbleProcessor.ts" />
 /// <reference path="../vendor/typings/gsap/greensock.d.ts" />
 
-//todo use an interface later
-
 module bubbleGame {
     export class Bubble {
         public age:number;

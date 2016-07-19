@@ -1,6 +1,7 @@
 /// <reference path="../vendor/typings/pixi.js/pixi.js.d.ts" />
 /// <reference path="BubbleProcessor.ts" />
 /// <reference path="Bubble.ts" />
+/// <reference path="TeamData.ts" />
 
 
 module bubbleGame {
@@ -29,7 +30,14 @@ module bubbleGame {
 
             requestAnimationFrame( () => this.animate() );
 
+            console.log('hi');
+            console.log(TeamInfo.generateList());
 
+            var t = TeamInfo.generateList();
+            for (var key in t) {
+                document.getElementById("myText").innerHTML = key;
+            }
+            //document.getElementById("myText").innerHTML = t;
 
         }
 
