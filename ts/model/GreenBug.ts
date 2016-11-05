@@ -11,7 +11,36 @@ module BugEnv {
 
         constructor( config: any ) {
             super(config);
+        }
 
+        public decreaseHealth(): void{
+            this.injuries += 1;
+        }
+
+        public checkHealth(): void{
+            if (this.injuries > 5) {
+                this.life = 0;
+            }
+            this.hit = true;
+        }
+
+        public checkForDeath(): void{
+            if(this.life > 0){
+                this.life -= 1;
+            } else {
+                this.hideBug();
+            }
+        }
+
+        public isBirthReady(): boolean {
+            if(this.reprodCounter >= 5){
+                return true;
+            }
+            return false;
+        }
+
+        public resetReprodCounter(): void{
+            this.reprodCounter = 0;
         }
     }
 

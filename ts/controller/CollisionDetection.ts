@@ -1,5 +1,6 @@
 module BugEnv {
     export class CollisionDetection {
+        //todo rename bubble to bug
 
         constructor() {
 

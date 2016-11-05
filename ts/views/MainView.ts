@@ -9,7 +9,7 @@ module BugEnv {
         public positionX:number;
         public positionY:number;
 
-        public bugController: BugContoller = new BugContoller();
+        public bugController: BugContoller;
 
 
         constructor() {
@@ -17,6 +17,8 @@ module BugEnv {
             this.mainContainer = <HTMLCanvasElement>document.getElementById("maincontainer");
             this.positionX = 800;
             this.positionY = 600;
+
+            this.bugController = new BugContoller(this.stage);
             this.renderer = PIXI.autoDetectRenderer(this.positionX, this.positionY, {
                 view: this.mainContainer,
                 backgroundColor: 0xd7fdde
@@ -36,6 +38,7 @@ module BugEnv {
             this.renderer.render(this.stage);
             //todo move this to a controller
            // this.bubbleGame.update();
+            this.bugController.update();
             requestAnimationFrame(() => this.animate());
 
         }
@@ -43,11 +46,20 @@ module BugEnv {
         public drawBugs(redNum: number, greenNum: number) {
             let redOptions: any = {stage: this.stage, bugNumber: redNum, type: 'red', stageX:this.positionX, stageY:this.positionY, bubbleHexColor:0xD41639};
             //0x007CFF
-            this.bugController.createRedBugs(redOptions);
+            let redBugList: any = this.bugController.createRedBugs(redOptions);
+            this.addBugsToStage(redBugList);
 
             let greenOptions: any = {stage: this.stage, bugNumber: greenNum, type: 'green', stageX:this.positionX, stageY:this.positionY, bubbleHexColor:0x007CFF};
             //0x007CFF
-            this.bugController.createGreenBugs(greenOptions);
+            let greenBugList = this.bugController.createGreenBugs(greenOptions);
+            this.addBugsToStage(greenBugList);
+
+        }
+
+        public addBugsToStage(bugList: any) {
+            for (var i = 0; i < bugList.length; i++) {
+                this.stage.addChild(bugList[i].graphics);
+            }
 
         }
 
