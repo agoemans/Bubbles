@@ -1,5 +1,4 @@
-/// <reference path="MainScene.ts" />
-module bubbleGame {
-    var app = new GameApp();
-
+/// <reference path="./views/MainView.ts" />
+module BugEnv {
+    var app = new EcoSystem();
 }

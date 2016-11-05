@@ -1,7 +1,4 @@
-/// <reference path="../vendor/typings/pixi.js/pixi.js.d.ts" />
-
-
-module bubbleGame {
+module BugEnv {
     export class StartButton {
         public graphics: PIXI.Graphics;
         public callback:any;

@@ -1,9 +1,4 @@
-/// <reference path="../vendor/typings/pixi.js/pixi.js.d.ts" />
-/// <reference path="MainScene.ts" />
-/// <reference path="BubbleProcessor.ts" />
-/// <reference path="../vendor/typings/gsap/greensock.d.ts" />
-
-module bubbleGame {
+module BugEnv {
     export class Bubble {
         public age:number;
         public hitRate:number;
